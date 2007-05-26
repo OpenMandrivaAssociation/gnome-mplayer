@@ -1,7 +1,7 @@
 
 %define name	gnome-mplayer
 %define version	0.4.6
-%define rel	1
+%define rel	2
 
 Summary:	Simple GUI for MPlayer
 Name:		%name
@@ -12,6 +12,7 @@ URL:		http://dekorte.homeip.net/download/gnome-mplayer/
 Source:		http://dekorte.homeip.net/download/gnome-mplayer/%name-%version.tar.bz2
 Group:		Video
 BuildRoot:	%_tmppath/%name-root
+Requires:	mplayer
 BuildRequires:	libgnome2-devel
 BuildRequires:	gnomeui2-devel
 BuildRequires:	dbus-devel
