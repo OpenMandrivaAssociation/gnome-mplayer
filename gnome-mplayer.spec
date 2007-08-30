@@ -1,6 +1,6 @@
 
 %define name	gnome-mplayer
-%define version	0.4.7
+%define version	0.5.0
 %define rel	1
 
 Summary:	Simple GUI for MPlayer
@@ -9,7 +9,7 @@ Version:	%version
 Release:	%mkrel %rel
 License:	GPL
 URL:		http://dekorte.homeip.net/download/gnome-mplayer/
-Source:		http://dekorte.homeip.net/download/gnome-mplayer/%name-%version.tar.bz2
+Source:		http://dekorte.homeip.net/download/gnome-mplayer/%name-%version.tar.gz
 Group:		Video
 BuildRoot:	%_tmppath/%name-root
 Requires:	mplayer
@@ -40,9 +40,7 @@ rm -rf %buildroot
 %makeinstall_std
 
 desktop-file-install --vendor="" \
-	--remove-category=Application \
-	--add-category=Audio \
-	--add-category=Video \
+	--add-category="Audio;Video;GTK;Player" \
 	--dir %buildroot%_datadir/applications \
 	%buildroot%_datadir/applications/*.desktop
 
