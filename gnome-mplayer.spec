@@ -10,7 +10,6 @@ License:	GPL
 URL:		http://dekorte.homeip.net/download/gnome-mplayer/
 Source:		http://dekorte.homeip.net/download/gnome-mplayer/%name-%version.tar.gz
 Group:		Video
-BuildRoot:	%_tmppath/%name-root
 Requires:	mplayer
 BuildRequires:	libgnome2-devel
 BuildRequires:	gnomeui2-devel
