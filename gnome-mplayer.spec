@@ -1,12 +1,12 @@
 %define name	gnome-mplayer
-%define version	0.5.3
+%define version	0.5.4
 %define rel	1
 
 Summary:	Simple GUI for MPlayer
 Name:		%name
 Version:	%version
 Release:	%mkrel %rel
-License:	GPL
+License:	GPLv2+
 URL:		http://dekorte.homeip.net/download/gnome-mplayer/
 Source:		http://dekorte.homeip.net/download/gnome-mplayer/%name-%version.tar.gz
 Group:		Video
