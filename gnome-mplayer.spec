@@ -1,5 +1,5 @@
 %define name	gnome-mplayer
-%define version	0.5.4
+%define version	0.6.0
 %define rel	1
 
 Summary:	Simple GUI for MPlayer
