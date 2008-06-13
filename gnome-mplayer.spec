@@ -4,8 +4,8 @@ Version:	0.6.2
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Video
-URL:		http://dekorte.homeip.net/download/gnome-mplayer/
-Source:		http://dekorte.homeip.net/download/gnome-mplayer/%name-%version.tar.gz
+URL:		http://kdekorte.googlepages.com/gnomemplayer
+Source:		http://gnome-mplayer.googlecode.com/files/%name-%version.tar.gz
 Requires:	mplayer
 BuildRequires:	libgnome2-devel
 BuildRequires:	gnomeui2-devel
