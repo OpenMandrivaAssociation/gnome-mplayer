@@ -1,6 +1,6 @@
 Summary:	Simple GUI for MPlayer
 Name:		gnome-mplayer
-Version:	0.7.0
+Version:	0.8.0
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Video
@@ -24,7 +24,6 @@ MPlayer from a single command.
 
 %prep
 %setup -q
-sed -i s,Icon=gnome-player.png,Icon=gnome-player, gnome-mplayer.desktop
 
 %build
 %configure2_5x
@@ -34,8 +33,8 @@ sed -i s,Icon=gnome-player.png,Icon=gnome-player, gnome-mplayer.desktop
 rm -rf %{buildroot}
 %makeinstall_std
 
-desktop-file-install \
-	--add-category="Audio;Video;GTK;Player" \
+desktop-file-install --vendor='' \
+	--add-category="Audio;Video;GTK;Player;GNOME" \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{buildroot}%{_datadir}/applications/*.desktop
 
