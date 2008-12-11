@@ -12,7 +12,7 @@ BuildRequires:	gnomeui2-devel
 BuildRequires:	dbus-devel
 BuildRequires:	dbus-glib-devel
 BuildRequires:	desktop-file-utils
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
