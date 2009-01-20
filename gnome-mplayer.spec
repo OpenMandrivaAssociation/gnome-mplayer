@@ -1,11 +1,12 @@
 Summary:	Simple GUI for MPlayer
 Name:		gnome-mplayer
-Version:	0.9.2
+Version:	0.9.3
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Video
 URL:		http://kdekorte.googlepages.com/gnomemplayer
 Source:		http://gnome-mplayer.googlecode.com/files/%name-%version.tar.gz
+Patch0:		gnome-mplayer-0.9.3-fix-str-fmt.patch
 Requires:	mplayer
 BuildRequires:	libgnome2-devel
 BuildRequires:	gnomeui2-devel
@@ -13,6 +14,9 @@ BuildRequires:	dbus-devel
 BuildRequires:	dbus-glib-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	imagemagick
+BuildRequires:	libmusicbrainz3-devel
+BuildRequires:	libalsa-devel curl-devel
+BuildRequires:	libnotify-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -24,6 +28,7 @@ MPlayer from a single command.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 %configure2_5x
