@@ -1,6 +1,6 @@
 Summary:	Simple GUI for MPlayer
 Name:		gnome-mplayer
-Version:	0.9.4
+Version:	0.9.5
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Video
