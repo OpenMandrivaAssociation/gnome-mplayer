@@ -1,12 +1,14 @@
 Summary:	Simple GUI for MPlayer
 Name:		gnome-mplayer
-Version:	0.9.5
+Version:	0.9.6
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Video
 URL:		http://kdekorte.googlepages.com/gnomemplayer
 Source:		http://gnome-mplayer.googlecode.com/files/%name-%version.tar.gz
-Patch0:		gnome-mplayer-0.9.3-fix-str-fmt.patch
+Patch0:		gnome-mplayer-fix-str-fmt.patch
+Patch1:		gnome-mplayer-fix-underlinking.patch
+Patch2:		gnome-mplayer-nautilus-module.patch
 Requires:	mplayer
 BuildRequires:	libgnome2-devel
 BuildRequires:	gnomeui2-devel
@@ -17,6 +19,8 @@ BuildRequires:	imagemagick
 BuildRequires:	libmusicbrainz3-devel
 BuildRequires:	libalsa-devel curl-devel
 BuildRequires:	libnotify-devel
+BuildRequires:	libgpod-devel
+BuildRequires:	nautilus-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -28,9 +32,14 @@ MPlayer from a single command.
 
 %prep
 %setup -q
-%patch0 -p0
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
+#patch1
+autoreconf -f
+libtoolize -f
 %configure2_5x
 %make
 
@@ -54,6 +63,8 @@ install -d -m755 %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48}/apps
 convert %{name}.png -resize 16x16 %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 convert %{name}.png -resize 32x32 %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
 convert %{name}.png -resize 48x48 %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+
+rm %{buildroot}%_libdir/nautilus/extensions-*/lib*a
 
 %find_lang %{name}
 
@@ -86,3 +97,7 @@ rm -rf %{buildroot}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 %{_iconsdir}/hicolor/*/apps/%{name}.png
+%dir %{_libdir}/nautilus
+%dir %{_libdir}/nautilus/extensions-*
+%{_libdir}/nautilus/extensions-*/lib*.so
+
