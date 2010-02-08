@@ -1,12 +1,13 @@
 Summary:	Simple GUI for MPlayer
 Name:		gnome-mplayer
-Version:	0.9.8
-Release:	%mkrel 2
+Version:	0.9.9
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Video
 URL:		http://kdekorte.googlepages.com/gnomemplayer
 Source:		http://gnome-mplayer.googlecode.com/files/%name-%version.tar.gz
 Patch0:		gnome-mplayer-fix-str-fmt.patch
+Patch1:		gnome-mplayer-0.9.9-link.patch
 Requires:	mplayer
 BuildRequires:	libgnome2-devel
 BuildRequires:	gnomeui2-devel
@@ -35,12 +36,11 @@ MPlayer from a single command.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p0
 
 %build
-# Nautilus plugin
-%define _disable_ld_no_undefined 1
-
-%configure2_5x
+autoreconf -fi
+%configure2_5x --disable-schemas-install
 %make
 
 %install
@@ -88,6 +88,7 @@ rm -rf %{buildroot}
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.*
+%{_datadir}/gnome-control-center/default-apps/gnome-mplayer.xml
 %dir %{_libdir}/nautilus
 %dir %{_libdir}/nautilus/extensions-*
 %{_libdir}/nautilus/extensions-*/lib*.so
