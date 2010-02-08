@@ -1,13 +1,14 @@
 Summary:	Simple GUI for MPlayer
 Name:		gnome-mplayer
 Version:	0.9.9
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		Video
 URL:		http://kdekorte.googlepages.com/gnomemplayer
 Source:		http://gnome-mplayer.googlecode.com/files/%name-%version.tar.gz
 Patch0:		gnome-mplayer-fix-str-fmt.patch
 Patch1:		gnome-mplayer-0.9.9-link.patch
+Patch2:		gnome-mplayer-0.9.9-fix-mdv-pulse-detection.patch
 Requires:	mplayer
 BuildRequires:	libgnome2-devel
 BuildRequires:	gnomeui2-devel
@@ -36,11 +37,12 @@ MPlayer from a single command.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p0
+%patch1 -p0 -b .link
+%patch2 -p0 -b .pulse
 
 %build
 autoreconf -fi
-%configure2_5x --disable-schemas-install
+%configure2_5x
 %make
 
 %install
@@ -57,6 +59,8 @@ rm installed-docs/{INSTALL,COPYING}
 
 # zero length docs
 find installed-docs -size 0 | xargs rm
+
+rm -fr %buildroot%{_libdir}/nautilus/extensions-*/lib*.la
 
 %find_lang %{name}
 
