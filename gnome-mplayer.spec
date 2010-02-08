@@ -21,6 +21,7 @@ BuildRequires:	curl-devel
 BuildRequires:	libnotify-devel
 BuildRequires:	libgpod-devel
 BuildRequires:	nautilus-devel
+BuildRequires:	libxscrnsaver-devel
 # Used to determine volume control mode at build-time
 BuildRequires:	pulseaudio
 # Used to determine power control methods at build-time
