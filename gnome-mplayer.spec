@@ -1,13 +1,13 @@
 Summary:	Simple GUI for MPlayer
 Name:		gnome-mplayer
-Version:	0.9.9.2
-Release:	%mkrel 3
+Version:	1.0.2
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Video
 URL:		http://kdekorte.googlepages.com/gnomemplayer
 Source:		http://gnome-mplayer.googlecode.com/files/%name-%version.tar.gz
 Patch0:		gnome-mplayer-fix-str-fmt.patch
-Patch1:		gnome-mplayer-0.9.9-link.patch
+Patch1:		gnome-mplayer-1.0.2-gcc46.patch
 Patch2:		gnome-mplayer-0.9.9-fix-mdv-pulse-detection.patch
 Requires:	mplayer
 BuildRequires:	libgnome2-devel
@@ -38,8 +38,8 @@ MPlayer from a single command.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p0 -b .link
-%patch2 -p0 -b .pulse
+%patch1 -p0 -b .gcc
+#patch2 -p0 -b .pulse
 
 %build
 autoreconf -fi
