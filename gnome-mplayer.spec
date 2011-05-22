@@ -20,8 +20,8 @@ BuildRequires:	libnotify-devel
 BuildRequires:	libgpod-devel
 BuildRequires:	nautilus-devel
 BuildRequires:	libxscrnsaver-devel
-# Used to determine volume control mode at build-time
-BuildRequires:	pulseaudio
+BuildRequires:	libgpod-devel
+BuildRequires:	pulseaudio-devel
 # Used to determine power control methods at build-time
 BuildRequires:	gnome-power-manager
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
@@ -65,14 +65,10 @@ rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post
-%post_install_gconf_schemas %{name}
 %{update_menus}
 %{update_desktop_database}
 %update_icon_cache hicolor
 %endif
-
-%preun
-%preun_uninstall_gconf_schemas %{name}
 
 %if %mdkversion < 200900
 %postun
@@ -84,10 +80,10 @@ rm -rf %{buildroot}
 %files -f %{name}.lang
 %defattr(-,root,root)
 %doc installed-docs/*
-%{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.*
+%{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/gnome-control-center/default-apps/gnome-mplayer.xml
 %dir %{_libdir}/nautilus
 %dir %{_libdir}/nautilus/extensions-*
