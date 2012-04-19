@@ -1,30 +1,29 @@
 Summary:	Simple GUI for MPlayer
 Name:		gnome-mplayer
-Version:	1.0.3
-Release:	%mkrel 1
+Version:	1.0.6
+Release:	1
 License:	GPLv2+
 Group:		Video
 URL:		http://kdekorte.googlepages.com/gnomemplayer
-Source:		http://gnome-mplayer.googlecode.com/files/%name-%version.tar.gz
+Source0:	http://gnome-mplayer.googlecode.com/files/%name-%version.tar.gz
 Patch0:		gnome-mplayer-fix-str-fmt.patch
 Requires:	mplayer
-BuildRequires:	libgnome2-devel
-BuildRequires:	gnomeui2-devel
-BuildRequires:	dbus-devel
-BuildRequires:	dbus-glib-devel
+BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:	pkgconfig(gmtk) >= 1.0.5
+BuildRequires:	pkgconfig(dbus-1) >= 0.95
+BuildRequires:	pkgconfig(dbus-glib-1) >= 0.70
+BuildRequires:	pkgconfig(xscrnsaver)
+BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(libnotify)
+BuildRequires:	pkgconfig(libgpod-1.0)
+BuildRequires:	pkgconfig(libmusicbrainz3)
+BuildRequires:	pkgconfig(libcurl)
+BuildRequires:	pkgconfig(libnautilus-extension)
 BuildRequires:	desktop-file-utils
-BuildRequires:	libmusicbrainz3-devel
-BuildRequires:	libalsa-devel
-BuildRequires:	curl-devel
-BuildRequires:	libnotify-devel
-BuildRequires:	libgpod-devel
-BuildRequires:	nautilus-devel
-BuildRequires:	libxscrnsaver-devel
-BuildRequires:	libgpod-devel
-BuildRequires:	pulseaudio-devel
+# Used to determine volume control mode at build-time
+BuildRequires:	pkgconfig(libpulse)
 # Used to determine power control methods at build-time
 BuildRequires:	gnome-power-manager
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 GNOME MPlayer is a simple GUI for MPlayer. It is intended to be a
@@ -38,11 +37,10 @@ MPlayer from a single command.
 %patch0 -p1
 
 %build
-%configure2_5x
+%configure2_5x --enable-gtk3
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 desktop-file-install --vendor='' \
@@ -50,43 +48,18 @@ desktop-file-install --vendor='' \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{buildroot}%{_datadir}/applications/*.desktop
 
-mv %{buildroot}%{_docdir}/%{name} installed-docs
-rm installed-docs/{INSTALL,COPYING}
-
 # zero length docs
-find installed-docs -size 0 | xargs rm
-
-rm -fr %buildroot%{_libdir}/nautilus/extensions-*/lib*.la
+find %{buildroot}%{_docdir}/%{name}/ -size 0 | xargs rm -f
 
 %find_lang %{name}
 
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post
-%{update_menus}
-%{update_desktop_database}
-%update_icon_cache hicolor
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_menus}
-%{clean_desktop_database}
-%clean_icon_cache hicolor
-%endif
-
 %files -f %{name}.lang
-%defattr(-,root,root)
-%doc installed-docs/*
+%doc %{_docdir}/%{name}/*
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.*
-%{_datadir}/glib-2.0/schemas/*.xml
+%{_datadir}/glib-2.0/schemas/apps.gecko-mediaplayer.preferences.gschema.xml
+%{_datadir}/glib-2.0/schemas/apps.gnome-mplayer.preferences.*.xml
 %{_datadir}/gnome-control-center/default-apps/gnome-mplayer.xml
-%dir %{_libdir}/nautilus
-%dir %{_libdir}/nautilus/extensions-*
-%{_libdir}/nautilus/extensions-*/lib*.so
+%{_libdir}/nautilus/extensions*/*.so
 %{_mandir}/man1/%{name}.1*
-
