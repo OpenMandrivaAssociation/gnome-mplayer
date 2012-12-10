@@ -1,15 +1,14 @@
 Summary:	Simple GUI for MPlayer
 Name:		gnome-mplayer
-Version:	1.0.6
-Release:	1
+Version:	1.0.7
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Video
 URL:		http://kdekorte.googlepages.com/gnomemplayer
 Source0:	http://gnome-mplayer.googlecode.com/files/%name-%version.tar.gz
-Patch0:		gnome-mplayer-fix-str-fmt.patch
 Requires:	mplayer
 BuildRequires:	pkgconfig(gtk+-3.0)
-BuildRequires:	pkgconfig(gmtk) >= 1.0.5
+BuildRequires:	pkgconfig(gmtk) >= 1.0.7
 BuildRequires:	pkgconfig(dbus-1) >= 0.95
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.70
 BuildRequires:	pkgconfig(xscrnsaver)
@@ -34,7 +33,6 @@ MPlayer from a single command.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure2_5x --enable-gtk3
