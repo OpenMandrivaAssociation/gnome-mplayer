@@ -4,7 +4,7 @@ Version:	1.0.9
 Release:	1
 License:	GPLv2+
 Group:		Video
-URL:		http://kdekorte.googlepages.com/gnomemplayer
+URL:		https://kdekorte.googlepages.com/gnomemplayer
 Source0:	http://gnome-mplayer.googlecode.com/files/%name-%version.tar.gz
 Requires:	mplayer
 BuildRequires:	pkgconfig(gtk+-3.0)
