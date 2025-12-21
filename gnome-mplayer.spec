@@ -7,6 +7,11 @@ Group:		Video
 URL:		https://kdekorte.googlepages.com/gnomemplayer
 Source0:	http://gnome-mplayer.googlecode.com/files/%name-%version.tar.gz
 Requires:	mplayer
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(gmtk) >= 1.0.7
 BuildRequires:	pkgconfig(dbus-1) >= 0.95
