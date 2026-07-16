@@ -1,7 +1,7 @@
 Summary:	Simple GUI for MPlayer
 Name:		gnome-mplayer
 Version:	1.0.9
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Video
 URL:		https://kdekorte.googlepages.com/gnomemplayer
